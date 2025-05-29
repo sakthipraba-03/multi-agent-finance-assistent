@@ -1,7 +1,7 @@
 import re
 import streamlit as st
 from agents.rag import get_rag_answer
-from agents.whisper_stt import record_audio
+from agents.stt import record_audio
 
 # Streamlit Page Settings
 st.set_page_config(page_title="Finance Assistent", page_icon="📈", layout="centered")

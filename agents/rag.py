@@ -8,7 +8,7 @@ from langchain.chains import LLMChain, RetrievalQA, StuffDocumentsChain
 embeddings = HuggingFaceEmbeddings()
 
 # load vector store
-vector_store = FAISS.load_local("./vector_db", embeddings, allow_dangerous_deserialization=True)
+vector_store = FAISS.load_local("./vector_db", embeddings, allow_dangerous_deserialization=True) # enter the full path of vector_db
 retriever = vector_store.as_retriever(search_kwargs={"k": 5})
 
 # load local llm
