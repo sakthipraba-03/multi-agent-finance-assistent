@@ -42,13 +42,13 @@ st.markdown("<h4>Get real-time insights from your voice</h4>", unsafe_allow_html
 st.write("---")
 
 # Voice Input & Market Response 
-if st.button("Record Voice"):
-    with st.spinner("Transcribing your voice..."):
-        try:
+try:
+    if st.button("Ask Your Query"):
+        with st.spinner("Transcribing your voice..."):
             transcribed_text = record_audio()
-            st.success("You said:")
-            st.write(transcribed_text)
+            st.success(transcribed_text)
 
+        if transcribed_text:
             with st.spinner("Getting market insights..."):
                 result = get_rag_answer(transcribed_text)
 
@@ -59,10 +59,9 @@ if st.button("Record Voice"):
                     st.warning("I'm not confident about the answer. Could you please rephrase your question?")
                 else:
                     response = re.sub(r"<think>.*?</think>\n\n?", "", response, flags=re.DOTALL)
-                    st.success("Market Brief:")
-                    st.write(response)
-
-        except Exception as e:
+                    st.success("Market Brief:",response)
+                    
+except Exception as e:
             st.error(f"Error: {str(e)}")
 
 # Footer
