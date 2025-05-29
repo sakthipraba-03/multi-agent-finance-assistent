@@ -1,7 +1,7 @@
 import re
 import streamlit as st
-from agents.rag import get_rag_answer
 from agents.stt import record_audio
+from agents.rag import get_rag_answer
 
 # Streamlit Page Settings
 st.set_page_config(page_title="Finance Assistent", page_icon="📈", layout="centered")
@@ -59,8 +59,8 @@ try:
                     st.warning("I'm not confident about the answer. Could you please rephrase your question?")
                 else:
                     response = re.sub(r"<think>.*?</think>\n\n?", "", response, flags=re.DOTALL)
-                    st.success("Market Brief:",response)
-                    
+                    st.success(f"Market Brief: {response}")
+
 except Exception as e:
             st.error(f"Error: {str(e)}")
 
