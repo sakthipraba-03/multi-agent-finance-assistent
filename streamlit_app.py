@@ -1,35 +1,29 @@
 import re
 import streamlit as st
-from banking_rag import get_rag_answer
-from banking_intent import predict_intent
+from agents.rag import get_rag_answer
+from agents.whisper_stt import record_audio
 
-st.set_page_config(page_title="SBI Banking Assistant", page_icon="🏦", layout="centered")
+# Streamlit Page Settings
+st.set_page_config(page_title="Finance Assistent", page_icon="📈", layout="centered")
 st.markdown(
     """
     <style>
-    /* Page background and font */
     .stApp {
-        background-color: #dce9f5;
+        background-color: #eef5fa;
         font-family: 'Arial', sans-serif;
     }
-    /* Force heading color */
-    h1, h2, h3, h4, h5, h6, .stMarkdown h1, .stMarkdown h4 {
-        color: #002663 !important; /* SBI dark blue */
-        font-weight: 700 !important;
+    h1, h4 {
+        color: #003366;
+        text-align: center;
+        font-weight: bold;
     }
-    /* General text color */
-    p, div, label, span {
-        color: #002663 !important;
-    }
-    /* Input box */
     .stTextInput>div>div>input {
         background-color: #ffffff;
-        color: #002663;
-        border: 1px solid #6c757d;
-        padding: 10px;
+        color: #003366;
         border-radius: 8px;
+        padding: 10px;
+        border: 1px solid #aaa;
     }
-    /* Button */
     .stButton>button {
         background-color: #0057b7;
         color: white;
@@ -38,36 +32,46 @@ st.markdown(
         font-size: 16px;
         border: none;
     }
-    /* Hide default footer */
-    footer { visibility: hidden; }
+    footer {visibility: hidden;}
     </style>
     """,
-    unsafe_allow_html=True,
+    unsafe_allow_html=True
 )
-st.markdown("<h1 style='text-align: center;'>🏦SBI Banking Assistant</h1>", unsafe_allow_html=True)
-st.markdown("<h4 style='text-align: center; '>Your trusted AI partner for SBI banking queries</h4>", unsafe_allow_html=True)
+st.markdown("<h1>📈 Market Brief Assistant</h1>", unsafe_allow_html=True)
+st.markdown("<h4>Get real-time insights from your voice</h4>", unsafe_allow_html=True)
 st.write("---")
 
-user_input = st.text_input("Enter your query:")
-if user_input:
-    with st.spinner("Generating answer..."):
-        label, confidence = predict_intent(user_input, temperature=0.1)
-        if label == 'banking':
-            st.success(label)
-            response = get_rag_answer(user_input)
-            response = re.sub(r"<think>.*?</think>\n\n?", "", response, flags=re.DOTALL)
-            st.success("Here's the information you requested:")
-            st.write(response)
-        else:
-            st.error(label)
-            st.error("Sorry, I can assist only with banking-related queries. Please ask a banking-related question.")
-            
+# Voice Input & Market Response 
+if st.button("Record Voice"):
+    with st.spinner("Transcribing your voice..."):
+        try:
+            transcribed_text = record_audio()
+            st.success("You said:")
+            st.write(transcribed_text)
+
+            with st.spinner("Getting market insights..."):
+                result = get_rag_answer(transcribed_text)
+
+                # Extract and clean response
+                response = result.get("answer") if isinstance(result, dict) else result
+                confidence = result.get("confidence", 1.0) if isinstance(result, dict) else 1.0
+                if confidence < 0.65:
+                    st.warning("⚠️ I'm not confident about the answer. Could you please rephrase your question?")
+                else:
+                    response = re.sub(r"<think>.*?</think>\n\n?", "", response, flags=re.DOTALL)
+                    st.success("📊 Market Brief:")
+                    st.write(response)
+
+        except Exception as e:
+            st.error(f"Error: {str(e)}")
+
+# Footer
 st.markdown(
     """
     <hr style='border: 0.5px solid #6c757d;'>
-    <div style='text-align: center; color: #002663;'>
-      Powered by SBI AI Assistant
+    <div style='text-align: center; color: #003366;'>
+      Powered by AI Market Voice Agent
     </div>
     """,
-    unsafe_allow_html=True,
+    unsafe_allow_html=True
 )
