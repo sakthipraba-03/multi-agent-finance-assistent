@@ -1,4 +1,4 @@
-# AI-Powered Market Voice Assistant
+# AI-Powered Voice Assistant
 This is a voice-enabled multi-agent assistant designed for portfolio managers to get real-time briefings on **Asia tech stock exposure** and **earnings surprises**. The system uses **Speech-to-Text (STT)** to process spoken queries, retrieves answers using a **Retrieval-Augmented Generation (RAG)** pipeline, and responds through a simple web interface.
 
 ## Use Case
@@ -8,7 +8,7 @@ This is a voice-enabled multi-agent assistant designed for portfolio managers to
 > “Today, your Asia tech allocation is 22% of AUM, up from 18% yesterday. TSMC beat estimates by 4%, Samsung missed by 2%…”
 
 ## System Architecture
-![System Architecture](./assets/architecture.png)
+![System Architecture](./assets/architecture_diagram.png)
 
 ## Components Used
 
@@ -36,8 +36,8 @@ This is a voice-enabled multi-agent assistant designed for portfolio managers to
 ## Setup Instructions
 
 ### 1. Clone the repo
-git clone https://github.com/sakthipraba-03/multi-agent-finance-assistant.git
-cd multi-agent-finance-assistent
+- git clone https://github.com/sakthipraba-03/multi-agent-finance-assistant.git
+- cd multi-agent-finance-assistent
 
 ### 2. Install dependencies
 pip install -r requirements.txt
