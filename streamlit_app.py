@@ -56,10 +56,10 @@ if st.button("Record Voice"):
                 response = result.get("answer") if isinstance(result, dict) else result
                 confidence = result.get("confidence", 1.0) if isinstance(result, dict) else 1.0
                 if confidence < 0.65:
-                    st.warning("⚠️ I'm not confident about the answer. Could you please rephrase your question?")
+                    st.warning("I'm not confident about the answer. Could you please rephrase your question?")
                 else:
                     response = re.sub(r"<think>.*?</think>\n\n?", "", response, flags=re.DOTALL)
-                    st.success("📊 Market Brief:")
+                    st.success("Market Brief:")
                     st.write(response)
 
         except Exception as e:
