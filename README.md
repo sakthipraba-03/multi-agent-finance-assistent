@@ -48,7 +48,7 @@ Run: streamlit run streamlit_app.py
 ## Framework & Toolkit Comparison
 | Task                | Toolkit Chosen         | Alternatives Considered      | Why This Was Chosen                          |
 |---------------------|------------------------|------------------------------|----------------------------------------------|
-| Speech-to-Text (STT)| `Whisper`(Hugging Face)| Vosk, AssemblyAI, Google STT | Accurate, open-source, multilingual          |
+| Speech-to-Text (STT)| `Whisper`              | Vosk, AssemblyAI, Google STT | Accurate, open-source, multilingual          |
 | UI / Frontend       | `Streamlit`            | Flask, Gradio                | Easiest integration for voice input + output |
 | Vector DB           | `FAISS`                | Pinecone, Chroma             | Fast, lightweight, local                     |
 | Embeddings          | `sentence-transformers`| OpenAI, Cohere               | Free, local, effective on PDF chunks         |
