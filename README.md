@@ -37,7 +37,7 @@ This is a voice-enabled multi-agent assistant designed for portfolio managers to
 
 ### 1. Clone the repo
 git clone https://github.com/sakthipraba-03/multi-agent-finance-assistant.git
-cd multi-agent-finance-assistant
+cd multi-agent-finance-assistent
 
 ### 2. Install dependencies
 pip install -r requirements.txt
