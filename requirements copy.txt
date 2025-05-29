@@ -1,0 +1,17 @@
+torch
+uvicorn
+langchain
+faiss-cpu
+streamlit
+setuptools
+sounddevice
+tokenizers
+pdfplumber
+safetensors
+transformers
+langchain-core
+huggingface-hub
+langchain-community
+sentence-transformers
+langchain-experimental
+langchain-text-splitters
