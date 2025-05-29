@@ -3,9 +3,9 @@ This is a voice-enabled multi-agent assistant designed for portfolio managers to
 
 ## Use Case
 > Every trading day at 8 AM, a portfolio manager asks:
-        “What’s our risk exposure in Asia tech stocks today, and highlight any earnings surprises?”
+> “What’s our risk exposure in Asia tech stocks today, and highlight any earnings surprises?”
 > The system replies with:
-        “Today, your Asia tech allocation is 22% of AUM, up from 18% yesterday. TSMC beat estimates by 4%, Samsung missed by 2%…”
+> “Today, your Asia tech allocation is 22% of AUM, up from 18% yesterday. TSMC beat estimates by 4%, Samsung missed by 2%…”
 
 ## System Architecture
 ![System Architecture](./assets/architecture.png)
