@@ -3,7 +3,6 @@ import streamlit as st
 from agents.stt import record_audio
 from agents.rag import get_rag_answer
 
-
 # Streamlit Page Settings
 st.set_page_config(page_title="Finance Assistent", page_icon="📈", layout="centered")
 st.markdown(
@@ -48,11 +47,9 @@ try:
         with st.spinner("Transcribing your voice..."):
             transcribed_text = record_audio()
             st.success(transcribed_text)
-
         if transcribed_text:
             with st.spinner("Getting market insights..."):
                 result = get_rag_answer(transcribed_text)
-
                 # Extract and clean response
                 response = result.get("answer") if isinstance(result, dict) else result
                 confidence = result.get("confidence", 1.0) if isinstance(result, dict) else 1.0
@@ -61,10 +58,8 @@ try:
                 else:
                     response = re.sub(r"<think>.*?</think>\n\n?", "", response, flags=re.DOTALL)
                     st.success(f"Market Brief: {response}")
-
 except Exception as e:
             st.error(f"Error: {str(e)}")
-
 # Footer
 st.markdown(
     """
